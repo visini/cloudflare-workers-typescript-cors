@@ -1,0 +1,26 @@
+compatibility_date = "2022-01-23"
+name = "esbuild-typescript-modules-workers-with-cors"
+type = "javascript"
+account_id = ''
+workers_dev = true
+
+kv_namespaces = [ 
+  { binding = "TEST_NAMESPACE", id = "add_worker_kv_namespace_id_here", preview_id = "this_is_ingored_anyway" }
+]
+
+[build]
+command = "yarn && yarn run build"
+[build.upload]
+format = "modules"
+main = "./index.mjs"
+
+[vars]
+WORKER_ENV = "production"
+
+[env.local.vars]
+WORKER_ENV = "development"
+
+[env.local]
+kv_namespaces = [ 
+  { binding = "TEST_NAMESPACE", preview_id = "add_worker_kv_namespace_id_here" }
+]
